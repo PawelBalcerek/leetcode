@@ -14,10 +14,10 @@ class Solution:
         worker = dummy = ListNode()
         left, right = head, head.next
         while left and right:
-            left.next = right.next
             worker.next = right
-            worker.next.next = left
+            left.next = right.next
+            right.next = left
+            worker = left
             left = left.next
             right = left.next if left else None
-            worker = worker.next.next
         return dummy.next
