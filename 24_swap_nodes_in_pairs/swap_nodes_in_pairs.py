@@ -9,15 +9,12 @@ class ListNode:
 
 class Solution:
     def swap_nodes_in_pairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
-            return head
-        worker = dummy = ListNode()
-        left, right = head, head.next
-        while left and right:
-            worker.next = right
-            left.next = right.next
-            right.next = left
-            worker = left
-            left = left.next
-            right = left.next if left else None
+        dummy = ListNode(0, head)
+        l, r = dummy, dummy.next
+        while l and r and r.next:
+            l.next = r.next
+            r.next = r.next.next
+            l.next.next = r
+            l = r
+            r = r.next
         return dummy.next
