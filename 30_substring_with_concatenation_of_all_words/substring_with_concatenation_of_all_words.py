@@ -3,39 +3,37 @@ class Solution:
         self, s: str, words: list[str]
     ) -> list[int]:
         w_len = len(words[0])
-        w_count = len(words)
 
-        w_counter = {}
-
-        for word in words:
-            w_counter[word] = w_counter.get(word, 0) + 1
+        words_w_count = {}
+        for w in words:
+            words_w_count[w] = words_w_count[w] + 1 if w in words_w_count else 1
 
         result = []
 
         for i in range(w_len):
-            l = r = i
-            curr_w_counter = {}
+            j = i
+            s_w_count = {}
             matched_words = 0
 
-            while r + w_len <= len(s):
-                word = s[r : r + w_len]
-                r += w_len
+            while i + w_len <= len(s):
+                i_w = s[i : i + w_len]
+                i += w_len
 
-                if word in w_counter:
-                    curr_w_counter[word] = curr_w_counter.get(word, 0) + 1
+                if i_w in words_w_count:
+                    s_w_count[i_w] = s_w_count[i_w] + 1 if i_w in s_w_count else 1
                     matched_words += 1
 
-                    while curr_w_counter[word] > w_counter[word]:
-                        l_word = s[l : l + w_len]
-                        curr_w_counter[l_word] -= 1
+                    while s_w_count[i_w] > words_w_count[i_w]:
+                        j_w = s[j : j + w_len]
+                        s_w_count[j_w] -= 1
                         matched_words -= 1
-                        l += w_len
+                        j += w_len
 
-                    if matched_words == w_count:
-                        result.append(l)
+                    if matched_words == len(words):
+                        result.append(j)
                 else:
-                    l = r
-                    curr_w_counter = {}
+                    j = i
+                    s_w_count = {}
                     matched_words = 0
 
         return result
