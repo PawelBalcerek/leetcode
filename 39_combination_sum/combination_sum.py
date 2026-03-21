@@ -10,14 +10,14 @@ class Solution:
                 results.append(possible_result[:])
                 return
 
-            if current_target < 0:
+            if current_target < 0 or i >= len(candidates):
                 return
 
-            for j in range(i, len(candidates)):
-                candidate = candidates[j]
-                possible_result.append(candidate)
-                backtracking(j, current_target - candidate)
-                possible_result.pop()
+            candidate = candidates[i]
+            possible_result.append(candidate)
+            backtracking(i, current_target - candidate)
+            possible_result.pop()
+            backtracking(i + 1, current_target)
 
         backtracking(0, target)
 
