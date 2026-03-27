@@ -44,4 +44,3 @@ class Solution:
 
         return results
 
-        return results
