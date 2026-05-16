@@ -31,7 +31,6 @@ class TestFindMinimumInRotatedSortedArray(unittest.TestCase):
 
     def test_large_array(self):
         nums = list(range(-5000, 5001))
-        # Rotate by 3000
         rotated_nums = nums[3000:] + nums[:3000]
         self.assertEqual(self.solution.find_minimum_in_rotated_sorted_array(rotated_nums), -5000)
 
