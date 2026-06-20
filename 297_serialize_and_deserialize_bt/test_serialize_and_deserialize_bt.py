@@ -1,5 +1,6 @@
 import unittest
-from serialize_and_deserialize_bt import TreeNode, Solution
+
+from serialize_and_deserialize_bt import Solution, TreeNode
 
 
 def trees_equal(a, b):
@@ -7,7 +8,9 @@ def trees_equal(a, b):
         return True
     if a is None or b is None:
         return False
-    return a.val == b.val and trees_equal(a.left, b.left) and trees_equal(a.right, b.right)
+    return (
+        a.val == b.val and trees_equal(a.left, b.left) and trees_equal(a.right, b.right)
+    )
 
 
 class TestSerializeAndDeserialize(unittest.TestCase):
@@ -71,7 +74,11 @@ class TestSerializeAndDeserialize(unittest.TestCase):
         self.assertIsInstance(result, TreeNode)
 
     def test_roundtrip_preserves_structure(self):
-        root = TreeNode(5, TreeNode(3, TreeNode(1), TreeNode(4)), TreeNode(8, TreeNode(7), TreeNode(9)))
+        root = TreeNode(
+            5,
+            TreeNode(3, TreeNode(1), TreeNode(4)),
+            TreeNode(8, TreeNode(7), TreeNode(9)),
+        )
         data = self.sol.serialize(root)
         result = self.sol.deserialize(data)
         self.assertTrue(trees_equal(root, result))
