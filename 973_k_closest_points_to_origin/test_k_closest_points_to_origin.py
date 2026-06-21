@@ -12,9 +12,7 @@ class TestKClosestPointsToOrigin(unittest.TestCase):
         self.assertEqual(result, [[-2, 2]])
 
     def test_example_2(self):
-        result = self.solution.k_closest_points_to_origin(
-            [[3, 3], [5, -1], [-2, 4]], 2
-        )
+        result = self.solution.k_closest_points_to_origin([[3, 3], [5, -1], [-2, 4]], 2)
         self.assertEqual(sorted(result), sorted([[3, 3], [-2, 4]]))
 
     def test_single_point(self):
@@ -37,9 +35,7 @@ class TestKClosestPointsToOrigin(unittest.TestCase):
         self.assertEqual(sorted(result), sorted([[-1, -1], [-2, -2]]))
 
     def test_same_distance(self):
-        result = self.solution.k_closest_points_to_origin(
-            [[1, 0], [0, 1], [10, 10]], 2
-        )
+        result = self.solution.k_closest_points_to_origin([[1, 0], [0, 1], [10, 10]], 2)
         self.assertEqual(sorted(result), sorted([[1, 0], [0, 1]]))
 
     def test_large_coordinates(self):
@@ -49,15 +45,11 @@ class TestKClosestPointsToOrigin(unittest.TestCase):
         self.assertEqual(result, [[1, 1]])
 
     def test_mixed_positive_negative(self):
-        result = self.solution.k_closest_points_to_origin(
-            [[1, -1], [-1, 1], [3, 3]], 2
-        )
+        result = self.solution.k_closest_points_to_origin([[1, -1], [-1, 1], [3, 3]], 2)
         self.assertEqual(sorted(result), sorted([[1, -1], [-1, 1]]))
 
     def test_points_on_axes(self):
-        result = self.solution.k_closest_points_to_origin(
-            [[5, 0], [0, 3], [0, -2]], 1
-        )
+        result = self.solution.k_closest_points_to_origin([[5, 0], [0, 3], [0, -2]], 1)
         self.assertEqual(result, [[0, -2]])
 
 
