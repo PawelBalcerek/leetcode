@@ -1,4 +1,5 @@
 import unittest
+
 from trie import Trie
 
 
@@ -154,7 +155,7 @@ class TestTrieMixedOperations(unittest.TestCase):
 
     def test_large_alphabet_coverage(self):
         trie = Trie()
-        words = [chr(ord('a') + i) for i in range(26)]
+        words = [chr(ord("a") + i) for i in range(26)]
         for word in words:
             trie.insert(word)
         for word in words:
