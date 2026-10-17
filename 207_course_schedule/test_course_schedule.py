@@ -1,4 +1,5 @@
 import unittest
+
 from iterative_course_schedule import Solution as IterativeSolution
 from recursive_course_schedule import Solution as RecursiveSolution
 
@@ -7,10 +8,14 @@ class TestCourseSchedule(unittest.TestCase):
     def setUp(self):
         self.solutions = [IterativeSolution(), RecursiveSolution()]
 
-    def assert_all_solutions(self, num_courses: int, prerequisites: list[list[int]], expected: bool):
+    def assert_all_solutions(
+        self, num_courses: int, prerequisites: list[list[int]], expected: bool
+    ):
         for solution in self.solutions:
             with self.subTest(solution=solution.__class__.__module__):
-                self.assertEqual(solution.course_schedule(num_courses, prerequisites), expected)
+                self.assertEqual(
+                    solution.course_schedule(num_courses, prerequisites), expected
+                )
 
     def test_example_1(self):
         self.assert_all_solutions(2, [[1, 0]], True)
@@ -52,10 +57,7 @@ class TestCourseSchedule(unittest.TestCase):
         self.assert_all_solutions(5, [[1, 0], [2, 1], [3, 2], [1, 3], [4, 0]], False)
 
     def test_complex_dag(self):
-        prerequisites = [
-            [1, 0], [2, 0], [3, 1], [3, 2],
-            [4, 2], [5, 3], [5, 4]
-        ]
+        prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2], [4, 2], [5, 3], [5, 4]]
         self.assert_all_solutions(6, prerequisites, True)
 
 
